@@ -1,11 +1,16 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <component :is="componente"></component>
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <component :is="componente"></component> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+// TODO: importar componente sincrono
+// import HelloWorld from './components/HelloWorld.vue';
+// TODO: importar componente asincrono (lazy loading)
+import { defineAsyncComponent } from 'vue';
+
+const HelloWorld = defineAsyncComponent(() => import('./components/HelloWorld.vue'));
 
 export default {
   name: 'App',
