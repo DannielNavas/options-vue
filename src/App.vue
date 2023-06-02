@@ -1,25 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <!-- <component :is="componente"></component> -->
+    <button @click="show = !show">Menu</button>
+    <transition name="fade">
+      <Menu v-show="show" />
+    </transition>
+
 </template>
 
 <script>
-// TODO: importar componente sincrono
-// import HelloWorld from './components/HelloWorld.vue';
-// TODO: importar componente asincrono (lazy loading)
-import { defineAsyncComponent } from 'vue';
-
-const HelloWorld = defineAsyncComponent(() => import('./components/HelloWorld.vue'));
+import Menu from './components/Menu.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld, // nombre del componente a utilizar
+    Menu,
   },
   data() {
     return {
-      componente: 'HelloWorld', // nombre del componente a utilizar en la directiva v-on:is="componente" o :is="componente"
+      show: false,
     };
   },
 };
@@ -33,5 +30,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+/* .fade-enter */
+/* .fade-leave */
+/* .fade-enter-active */
+/* .fade-leave-active */
+/* -from */
+/* -to */
+/* -active */
+
+.fade-leave-to, .fade-enter-from {
+  opacity: 0;
+}
+
+.fade-leave-active, .fade-enter-active {
+  transition: opacity .5s ease;
+
 }
 </style>
