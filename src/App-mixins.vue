@@ -1,11 +1,14 @@
 <template>
   <div>{{ text }}</div>
+  <div>{{ base }}</div>
 </template>
 
 <script>
+import base from '@/mixins/base';
 
 export default {
   name: 'App',
+  mixins: [base],
   components: {
   },
   data() {
@@ -26,3 +29,9 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<!-- los mixins tienen desventajas por que no se sabe que existe dentro de ellos  -->
+
+<!-- al ser compartidos se necesita modificar y afecta a todos los componentes que lo usan -->
+
+<!-- despues de la v3 el composition API es mejor que el uso de mixis -->
