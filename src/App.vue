@@ -1,6 +1,6 @@
 <template>
   <div>{{ text }}</div>
-  <Home />
+  <Home first-name="Miles" last-name="Morales" />
 </template>
 
 <script>

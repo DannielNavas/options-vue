@@ -8,11 +8,23 @@
 <script>
 import {
   computed,
-  onMounted, reactive, ref, watch,
+  onMounted, reactive, ref,
+  toRefs,
+  watch,
 } from 'vue';
 
 export default {
-  setup() {
+  props: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     onMounted(() => {
       console.log('mounted');
     });
@@ -29,8 +41,10 @@ export default {
       console.log(newValue, oldValue);
     });
 
-    const firstName = ref('John');
-    const lastName = ref('Doe');
+    // const firstName = ref('John');
+    // const lastName = ref('Doe');
+
+    const { firstName, lastName } = toRefs(props);
 
     const fullName = computed(() => `${firstName.value} ${lastName.value}`);
 
