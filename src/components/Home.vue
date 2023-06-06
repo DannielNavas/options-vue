@@ -1,10 +1,13 @@
 <template>
   <div>{{ counter }}</div>
   <div>Home {{ obj }}</div>
+  <div>{{ firstName }} {{ lastName }}</div>
+  <div>{{ fullName }}</div>
 </template>
 
 <script>
 import {
+  computed,
   onMounted, reactive, ref, watch,
 } from 'vue';
 
@@ -26,9 +29,18 @@ export default {
       console.log(newValue, oldValue);
     });
 
+    const firstName = ref('John');
+    const lastName = ref('Doe');
+
+    const fullName = computed(() => `${firstName.value} ${lastName.value}`);
+
     return {
       counter,
       obj,
+      firstName,
+      lastName,
+      fullName,
     };
   },
 };
+</script>
