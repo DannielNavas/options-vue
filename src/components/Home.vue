@@ -24,7 +24,10 @@ export default {
       required: true,
     },
   },
-  setup(props) {
+  setup(props, context) {
+    // attrs emit expose slots
+    console.log(context);
+
     onMounted(() => {
       console.log('mounted');
     });
@@ -48,10 +51,26 @@ export default {
 
     const fullName = computed(() => `${firstName.value} ${lastName.value}`);
 
-    return {
+    // eslint-disable-next-line no-unused-vars
+    const foo = () => {
+      console.log('foo');
+    };
+
+    // TODO: hace publico las variables o un objeto
+    context.expose({
       counter,
       obj,
       firstName,
+      lastName,
+      fullName,
+    });
+
+    return {
+      counter,
+      obj,
+      // eslint-disable-next-line vue/no-dupe-keys
+      firstName,
+      // eslint-disable-next-line vue/no-dupe-keys
       lastName,
       fullName,
     };
