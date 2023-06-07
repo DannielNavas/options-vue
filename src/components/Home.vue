@@ -4,6 +4,7 @@
   <div>{{ firstName }} {{ lastName }}</div>
   <div>{{ fullName }}</div>
   <div>{{ userName }}</div>
+  <button ref="btn">Click!</button>
 </template>
 
 <script>
@@ -61,6 +62,19 @@ export default {
     // de esta forma no es reactivo
     const userName = inject('userName');
 
+    // TODO: no existen los emementos dentro de setup no hay uso de this
+    // uso de convencion el null
+    const btn = ref(null);
+
+    // esto retorna un null por la creacion de
+    // referencia en el setu setup se ejecuta antesdel ciclo de vida de vue
+    console.log(btn.value); // null
+
+    // desde el watch se puede hacer el uso desde js para el manejo de los elementos en el dom
+    watch(btn, (valor) => {
+      console.log(valor);
+    });
+
     // TODO: hace publico las variables o un objeto
     context.expose({
       counter,
@@ -80,6 +94,7 @@ export default {
       lastName,
       fullName,
       userName,
+      btn,
     };
   },
 };
