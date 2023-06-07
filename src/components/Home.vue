@@ -3,11 +3,13 @@
   <div>Home {{ obj }}</div>
   <div>{{ firstName }} {{ lastName }}</div>
   <div>{{ fullName }}</div>
+  <div>{{ userName }}</div>
 </template>
 
 <script>
 import {
   computed,
+  inject,
   onMounted, reactive, ref,
   toRefs,
   watch,
@@ -56,6 +58,9 @@ export default {
       console.log('foo');
     };
 
+    // de esta forma no es reactivo
+    const userName = inject('userName');
+
     // TODO: hace publico las variables o un objeto
     context.expose({
       counter,
@@ -63,6 +68,7 @@ export default {
       firstName,
       lastName,
       fullName,
+      userName,
     });
 
     return {
@@ -73,6 +79,7 @@ export default {
       // eslint-disable-next-line vue/no-dupe-keys
       lastName,
       fullName,
+      userName,
     };
   },
 };

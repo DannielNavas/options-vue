@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import { provide } from 'vue';
 import Home from './components/Home.vue';
 
 export default {
@@ -15,6 +16,9 @@ export default {
     return {
       text: 'Hello World',
     };
+  },
+  setup() {
+    provide('userName', 'spiderman');
   },
 };
 </script>
